@@ -9,7 +9,7 @@ const initialState = {
 		amount: 0,
 	},
 	converted: {
-		code: 'KGS',
+		code: '',
 		amount: 0,
 	},
 }
@@ -36,5 +36,7 @@ const currencyReducer = (state = initialState, action) => {
 			return state
 	}
 }
+
+
 
 export default currencyReducer

@@ -4,13 +4,24 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import store from './redux/redux-store'
+import {
+	updateConvertibleCountryIndexCreator,
+	updateCountryToConvertIndexCreator,
+} from './redux/reducers/countries-reducer'
 
 console.log(store.getState())
 
 const renderApp = () => {
 	ReactDOM.render(
 		<React.StrictMode>
-			<App state={store.getState()} dispatch={store.dispatch.bind(store)} />
+			<App
+				state={store.getState()}
+				dispatch={store.dispatch.bind(store)}
+				creators={
+					(updateCountryToConvertIndexCreator,
+					updateConvertibleCountryIndexCreator)
+				}
+			/>
 		</React.StrictMode>,
 		document.getElementById('root')
 	)
