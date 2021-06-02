@@ -1,10 +1,10 @@
 import './App.css'
-import Converter from './components/Converter/Converter'
+import ConverterContainer from './components/Converter/ConverterContainer'
 
-function App({ state, dispatch, creators }) {
+function App() {
 	return (
 		<div className="app-wrapper">
-			<Converter state={state} dispatch={dispatch} creators={creators} />
+			<ConverterContainer />
 		</div>
 	)
 }

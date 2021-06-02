@@ -4,24 +4,26 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import store from './redux/redux-store'
+import { Context } from './Context'
 import {
-	updateConvertibleCountryIndexCreator,
-	updateCountryToConvertIndexCreator,
-} from './redux/reducers/countries-reducer'
-
-console.log(store.getState())
+	updateConvertibleCurrencyIdCreator,
+	updateConvertedCurrencyIdCreator,
+} from './redux/reducers/currency-reducer'
 
 const renderApp = () => {
+	const contextVal = {
+		store: store,
+		creators: {
+			updateConvertibleCurrencyIdCreator,
+			updateConvertedCurrencyIdCreator,
+		},
+	}
+
 	ReactDOM.render(
 		<React.StrictMode>
-			<App
-				state={store.getState()}
-				dispatch={store.dispatch.bind(store)}
-				creators={
-					(updateCountryToConvertIndexCreator,
-					updateConvertibleCountryIndexCreator)
-				}
-			/>
+			<Context.Provider value={contextVal}>
+				<App />
+			</Context.Provider>
 		</React.StrictMode>,
 		document.getElementById('root')
 	)

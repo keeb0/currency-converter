@@ -1,20 +1,22 @@
 import Currency from './Currency/Currency'
 import s from './Converter.module.css'
 
-const Converter = ({ state, dispatch }) => {
+const Converter = ({
+	convertibleCurrencyId,
+	convertedCountryId,
+	updateConvertibleCurrencyIdCreator,
+	updateConvertedCurrencyIdCreator,
+}) => {
 	return (
 		<div className={s.converter}>
+			<div>dsa</div>
 			<Currency
-				countryList={state.countries.countryList}
-				countryCode={state.countries.convertibleCountryIndex}
-				dispatch={dispatch}
-				actionType="UPDATE_CONVERTIBLE_COUNTRY_INDEX"
+				currencyId={convertibleCurrencyId}
+				updateCurrencyIdCreator={updateConvertibleCurrencyIdCreator}
 			/>
 			<Currency
-				countryList={state.countries.countryList}
-				countryCode={state.countries.countryToConvertIndex}
-				dispatch={dispatch}
-				actionType="UPDATE_COUNTRY_TO_CONVERT_INDEX"
+				currencyId={convertedCountryId}
+				updateCurrencyIdCreator={updateConvertedCurrencyIdCreator}
 			/>
 		</div>
 	)

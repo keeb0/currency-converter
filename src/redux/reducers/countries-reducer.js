@@ -1,10 +1,8 @@
-import { useEffect } from 'react'
-
 const LOAD_COUNTRIES = 'LOAD_COUNTRIES'
 const UPDATE_COUNTRY_TO_CONVERT_INDEX = 'UPDATE_COUNTRY_TO_CONVERT_INDEX'
 const UPDATE_CONVERTIBLE_COUNTRY_INDEX = 'UPDATE_CONVERTIBLE_COUNTRY_INDEX'
 
-const countryList = require('../countries.json')
+const countryList = require('../currencies.json')
 const initialState = {
 	countryList,
 	convertibleCountryIndex: '1',
