@@ -1,10 +1,15 @@
 import React from 'react'
 import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import reportWebVitals from './reportWebVitals'
 import './index.css'
 import App from './App'
-import reportWebVitals from './reportWebVitals'
-import { Provider } from 'react-redux'
 import store from './redux/store'
+import { loadList, updateRate } from './redux/currency/actions'
+import json from './redux/currency/currencies.json'
+
+store.dispatch(loadList(json.results))
+store.dispatch(updateRate())
 
 render(
 	<React.StrictMode>

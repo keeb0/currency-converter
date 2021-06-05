@@ -25,8 +25,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	width: 7rem;
-	/* flex-direction: column; */
+	width: 8rem;
 }
 
 .converter img {

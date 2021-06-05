@@ -1,42 +1,42 @@
 import { connect } from 'react-redux'
 import {
+	convertOriginal,
 	updateOriginalAmount,
 	updateOriginalId,
 	updateOutcomeAmount,
 	updateOutcomeId,
+	updateRate,
+	convertOutcome,
 } from '../../redux/currency/actions'
-import { convertOriginal, convertOutcome } from '../../redux/currency/functions'
-import store from '../../redux/store'
 import Converter from './Converter'
 
-const stateGlobal = store.getState()
+const mapStateToProps = ({ currency: state }) => ({
+	originalId: state.original.id,
+	originalAmount: state.original.amount,
 
-const mapStateToProps = state => ({
-	originalId: state.currency.original.id,
-	originalAmount: state.currency.original.amount,
+	outcomeId: state.outcome.id,
+	outcomeAmount: state.outcome.amount,
 
-	outcomeId: state.currency.outcome.id,
-	outcomeAmount: state.currency.outcome.amount,
-
-	currencyList: state.currency.list,
+	currencyList: state.list,
 })
 const mapDispatchToProps = d => ({
-	onInputOriginalId: e => d(updateOriginalId(e.target.value)),
+	onInputOriginalId: e => {
+		d(updateOriginalId(e.target.value))
+		d(updateRate())
+	},
 	onInputOriginalAmount: e => {
 		d(updateOriginalAmount(e.target.value))
-		convertOriginal(
-			stateGlobal.currency.list[stateGlobal.currency.original.id].currencyId,
-			stateGlobal.currency.list[stateGlobal.currency.outcome.id].currencyId
-		)
+		d(convertOriginal())
 	},
 
-	onInputOutcomeId: e => d(updateOutcomeId(e.target.value)),
+	onInputOutcomeId: e => {
+		d(updateOutcomeId(e.target.value))
+
+		d(updateRate())
+	},
 	onInputOutcomeAmount: e => {
 		d(updateOutcomeAmount(e.target.value))
-		convertOutcome(
-			stateGlobal.currency.list[stateGlobal.currency.original.id].currencyId,
-			stateGlobal.currency.list[stateGlobal.currency.outcome.id].currencyId
-		)
+		d(convertOutcome())
 	},
 })
 
